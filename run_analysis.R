@@ -48,7 +48,7 @@ Run_Analysis <- function(download = TRUE) {
   
   ##Lookup the activity labels
   mergeall<- merge(activitylabels,mergeall,by.x = "Activity ID",by.y = "Activity ID",all = TRUE) 
-  return(mergeall)
+  
   ## Select only the mean and std columns
   cleandata <- select(mergeall,Activity,contains('mean()'),contains('std()'))
   ## Melt data
@@ -58,7 +58,7 @@ Run_Analysis <- function(download = TRUE) {
   cleandata <- melt(cleandata,id = (names[1:2]),measure.var = (names[3:68]))
   ## Split the variable column
   cleandata <- separate(cleandata,variable,c('SensorLocation','AggregationMethod','AccDirection'),"-")
-  
+  return(cleandata)
   ## Group and summarise the data as mean - required to deliver step 5 of the assignment
   #groupdata<-group_by(cleandata,Activity,SensorLocation,AggregationMethod)
   #groupmean <- sumarise(groupdata,mean(value))
