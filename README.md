@@ -24,7 +24,7 @@ Each Folder holds the data file X and the labels file Y
 
 Labels files indicates which of the activities are represented in the data
 
-The data columns are labeled by the feature file
+The data columns are labeled by the feature file, and activities labels contain the activity text linking to the labels files
 
 # Data source:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
