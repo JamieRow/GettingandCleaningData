@@ -1,15 +1,17 @@
-function (Run_Analysis) {
+Run_Analysis <- function(download = TRUE) {
   ## Week 4 Getting and Cleaning Data assignment
   library(dplyr) #load dplyr to use merge and mutate functions 
-  ## download file from internet address below and save to working directory
+  library(reshape2) #load to use melt function 
+  library(tidyr)
   datapath <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
   LocalData <- "dataFile.zip"
+  ## download file from internet address below and save to working directory, for testing exclude download and unzip
+  if (download == TRUE){
+      download.file(datapath,LocalData)
   
-  download.file(datapath,LocalData)
-  
-  ## Unzip data file into working directory 
-  unzip(localdata)
-  
+      ## Unzip data file into working directory 
+      unzip(LocalData)
+  }
   ## File unzips with directory structure
   traindatafile <- "UCI HAR Dataset/train/X_train.txt"
   traindatalabelfile <- "UCI HAR Dataset/train/Y_train.txt"
@@ -25,7 +27,7 @@ function (Run_Analysis) {
   
   ##Open Activity labels 
   activitylabels <- read.table(activitylabelsfile,stringsAsFactors = FALSE)
-  names(activitylabels) <= c("ACtivity ID","Activity")
+  names(activitylabels) <- c("Activity ID","Activity")
   
   ## Open the train data and train labels
   traindata <- read.table(traindatafile)
@@ -45,9 +47,21 @@ function (Run_Analysis) {
   names(mergeall) <- columnlabels[,2] #use the column 2 of the labels to name the file
   
   ##Lookup the activity labels
-  merge(activitylabels,mergeall,by.x = "ACtivity ID",by.y = "Activity ID",all = TRUE) -> mergeall
-  
+  mergeall<- merge(activitylabels,mergeall,by.x = "Activity ID",by.y = "Activity ID",all = TRUE) 
+  return(mergeall)
   ## Select only the mean and std columns
+  cleandata <- select(mergeall,Activity,contains('mean()'),contains('std()'))
+  ## Melt data
+  ## get the column names to use in the melt
+  names <- names(cleandata)
+  ## Melt data 
+  cleandata <- melt(cleandata,id = (names[1:2]),measure.var = (names[3:68]))
+  ## Split the variable column
+  cleandata <- separate(cleandata,variable,c('SensorLocation','AggregationMethod','AccDirection'),"-")
+  
+  ## Group and summarise the data as mean - required to deliver step 5 of the assignment
+  #groupdata<-group_by(cleandata,Activity,SensorLocation,AggregationMethod)
+  #groupmean <- sumarise(groupdata,mean(value))
   
   
 }
