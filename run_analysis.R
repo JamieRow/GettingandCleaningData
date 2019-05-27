@@ -63,5 +63,6 @@ Run_Analysis <- function(download = TRUE) {
   #groupdata<-group_by(cleandata,Activity,SensorLocation,AggregationMethod)
   #groupmean <- sumarise(groupdata,mean(value))
   
+  #extra line
   
 }
