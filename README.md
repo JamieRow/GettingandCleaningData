@@ -12,6 +12,20 @@ Clean data adding descriptive names etc
 
 Create tidy data set with average of each variable for each activity and Subject
 
+# Process:
+
+Zip File extracts into a folder structute
+
+Main directory copntains the Readme and Features Files
+
+Two Sub directories exist for Test and Train data
+
+Each Folder holds the data file X and the labels file Y
+
+Labels files indicates which of the activities are represented in the data
+
+The data columns are labeled by the feature file
+
 # Data source:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 Data set owners: Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013. 
