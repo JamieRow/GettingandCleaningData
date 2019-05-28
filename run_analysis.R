@@ -55,13 +55,14 @@ Run_Analysis <- function(download = TRUE) {
   ## get the column names to use in the melt
   names <- names(cleandata)
   ## Melt data 
-  cleandata <- melt(cleandata,id = (names[1:2]),measure.var = (names[3:68]))
+  cleandata <- melt(cleandata,id = (names[1:2]),measure.var = (names[3:67]))
   ## Split the variable column
   cleandata <- separate(cleandata,variable,c('SensorLocation','AggregationMethod','AccDirection'),"-")
+  cleandata <- select(cleandata,Activity,SensorLocation:value)
   return(cleandata)
   ## Group and summarise the data as mean - required to deliver step 5 of the assignment
   #groupdata<-group_by(cleandata,Activity,SensorLocation,AggregationMethod)
-  #groupmean <- sumarise(groupdata,mean(value))
+  #groupmean <- summarise(groupdata,mean(value))
   
   #extra line
   
