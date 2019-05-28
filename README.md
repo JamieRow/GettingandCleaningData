@@ -26,6 +26,14 @@ Labels files indicates which of the activities are represented in the data
 
 The data columns are labeled by the feature file, and activities labels contain the activity text linking to the labels files
 
+# Usage:
+
+Run_Analysis.R contains a single function that will read raw data and return the clean dataset.
+
+Example: mydata <- Run_Analysis(download = TRUE)
+
+download, Default = TRUE will download the data from the web if it is not in the current working directory. If the data is in the current working directory use downloaf = FALSE as this will reduce the time to run 
+
 # Data source:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 Data set owners: Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013. 
