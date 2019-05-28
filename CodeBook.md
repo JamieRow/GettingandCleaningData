@@ -1,4 +1,4 @@
-## Codebook for Getting and Cleaning Data Project
+# Codebook for Getting and Cleaning Data Project
 
 Original data: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
@@ -18,37 +18,37 @@ Original Data Represents:
 - Its activity label. 
 - An identifier of the subject who carried out the experiment.
 
-## Run_Analysis produces new data set with the following variables:
+# Run_Analysis produces new data set with the following variables:
 
-# Activity         : 
+## Activity         : 
 
 chr  
 
 Describes the activity the test subject completed while redordind the data. Example: "WALKING"
 Activity ID originally sourced from the Train_Y and Test_Y and liked to the Activity using the ID and Activity in teh Activity_Label.txt file
 
-# SensorLocation   : 
+## SensorLocation   : 
 
 chr  
 
 describes the variable that was recorded. eg "tBodyAcc" 
 Sourced from the features.txt which represnt the column headings of the test and train data. This has been transposed to the column using the melt function and then split from the other details using the separate function separeted on the '-' character and is the first value of this operation 
 
-# AggregationMethod: 
+## AggregationMethod: 
 
 chr  
 
 describes the aggregation method used in the initial experiment. Eg "mean()" "std()"
 Sourced from the features.txt which represnt the column headings of the test and train data. This has been transposed to the column using the melt function and then split from the other details using the separate function separeted on the '-' character and is the middle value of this operation 
 
-# AccDirection     : 
+## AccDirection     : 
 
 chr  
 
 describes the direction of the recorded acceleration. eg "X" "Y" "Z"
 Sourced from the features.txt which represnt the column headings of the test and train data. This has been transposed to the column using the melt function and then split from the other details using the separate function separeted on the '-' character and is the last value of this operation 
 
-# value            : 
+## value            : 
 
 num  
 
