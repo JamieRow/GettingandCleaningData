@@ -68,6 +68,7 @@ Run_Analysis <- function(download = TRUE) {
   #groupdata<-group_by(cleandata,Activity,Subject,SensorLocation,AggregationMethod)
   #groupmean <- summarise(groupdata,mean(value))
   #write.table(groupmean,"Step5.txt",row.name=FALSE)
-
+  #extra Line
+  
   
 }
