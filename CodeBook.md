@@ -27,6 +27,12 @@ chr
 Describes the activity the test subject completed while redordind the data. Example: "WALKING"
 Activity ID originally sourced from the Train_Y and Test_Y and liked to the Activity using the ID and Activity in teh Activity_Label.txt file
 
+## Subject          :
+
+factor with 2 Levels "Train", "Test"
+
+Describes whether the subject was in the Train or Test group of data. Data is originally described by the file name
+
 ## SensorLocation   : 
 
 chr  
