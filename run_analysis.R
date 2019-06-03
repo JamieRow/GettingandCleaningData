@@ -59,7 +59,7 @@ Run_Analysis <- function(download = TRUE) {
   ## get the column names to use in the melt
   names <- names(cleandata)
   ## Melt data 
-  cleandata <- melt(cleandata,id = (names[1:3]),measure.var = (names[3:67]))
+  cleandata <- melt(cleandata,id = (names[1:2]),measure.var = (names[3:68]))
   ## Split the variable column
   cleandata <- separate(cleandata,variable,c('SensorLocation','AggregationMethod','AccDirection'),"-")
   cleandata <- select(cleandata,Activity,Subject,SensorLocation:value)
@@ -68,6 +68,6 @@ Run_Analysis <- function(download = TRUE) {
   #groupdata<-group_by(cleandata,Activity,Subject,SensorLocation,AggregationMethod)
   #groupmean <- summarise(groupdata,mean(value))
   #write.table(groupmean,"Step5.txt",row.name=FALSE)
-  #extra line
+
   
 }
