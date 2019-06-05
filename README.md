@@ -20,7 +20,7 @@ Main directory copntains the Readme and Features Files
 
 Two Sub directories exist for Test and Train data
 
-Each Folder holds the data file X and the labels file Y
+Each Folder holds the data file X and the labels file Y (identifying the activity) and the Subjects file (identifying the Subject)
 
 Labels files indicates which of the activities are represented in the data
 

@@ -29,6 +29,13 @@ Activity ID originally sourced from the Train_Y and Test_Y and liked to the Acti
 
 ## Subject          :
 
+Integer
+
+Identifies the original subject who performed the activity. Sourced frm the Subject_[Data Group].txt file. Positionally matched to the original data set
+
+
+## Data Group       :
+
 factor with 2 Levels "Train", "Test"
 
 Describes whether the subject was in the Train or Test group of data. Data is originally described by the file name

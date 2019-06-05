@@ -15,8 +15,10 @@ Run_Analysis <- function(download = TRUE) {
   ## File unzips with directory structure
   traindatafile <- "UCI HAR Dataset/train/X_train.txt"
   traindatalabelfile <- "UCI HAR Dataset/train/Y_train.txt"
+  traindatasubjects <- "UCI HAR Dataset/train/subject_train.txt"
   testdatafile<- "UCI HAR Dataset/test/X_test.txt"
   testdatalabelfile<- "UCI HAR Dataset/test/Y_test.txt"
+  testdatasubjects <- "UCI HAR Dataset/test/subject_test.txt"
   columnlabelsfile <- "UCI HAR Dataset/features.txt"
   activitylabelsfile <- "UCI HAR Dataset/activity_labels.txt"
   
@@ -32,37 +34,40 @@ Run_Analysis <- function(download = TRUE) {
   ## Open the train data and train labels
   traindata <- read.table(traindatafile)
   trainlabel <- read.table(traindatalabelfile)
+  trainsubject <- read.table(traindatasubjects)
   ## column bind the labels to the data activity id lines up with the datafile
-  subject = rep("Train",nrow(traindata))  
-  trainmerge <- cbind(subject,trainlabel,traindata)
+  DataSource = rep("Train",nrow(traindata))  
+  trainmerge <- cbind(DataSource,trainsubject,trainlabel,traindata)
 
  
   ## Open the test data and test labels
   testdata <- read.table(testdatafile)
   testlabel <- read.table(testdatalabelfile)
+  testsubject <- read.table(testdatasubjects)
   ## column bind the labels to the data activity id lines up with the datafile
-  subject = rep("Test",nrow(testdata))  
-  testmerge <- cbind(subject,testlabel,testdata)
+  DataSource = rep("Test",nrow(testdata))  
+  testmerge <- cbind(DataSource,testsubject,testlabel,testdata)
 
 
   ##join together test and train  
   mergeall <- rbind(testmerge,trainmerge)
   columnlabels <- rbind(c(0,"Subject"),columnlabels)
+  columnlabels <- rbind(c(0,"DataSource"),columnlabels)
   names(mergeall) <- columnlabels[,2] #use the column 2 of the labels to name the file
   
   ##Lookup the activity labels
   mergeall<- merge(activitylabels,mergeall,by.x = "Activity ID",by.y = "Activity ID",all = TRUE) 
   
   ## Select only the mean and std columns
-  cleandata <- select(mergeall,Activity,Subject,contains('mean()'),contains('std()'))
+  cleandata <- select(mergeall,Activity,DataSource,Subject,contains('mean()'),contains('std()'))
   ## Melt data
   ## get the column names to use in the melt
   names <- names(cleandata)
   ## Melt data 
-  cleandata <- melt(cleandata,id = (names[1:2]),measure.var = (names[3:68]))
+  cleandata <- melt(cleandata,id = (names[1:3]),measure.var = (names[4:69]))
   ## Split the variable column
   cleandata <- separate(cleandata,variable,c('SensorLocation','AggregationMethod','AccDirection'),"-")
-  cleandata <- select(cleandata,Activity,Subject,SensorLocation:value)
+  cleandata <- select(cleandata,Activity,DataSource,Subject,SensorLocation:value)
   return(cleandata)
   ## Group and summarise the data as mean - required to deliver step 5 of the assignment
   #groupdata<-group_by(cleandata,Activity,Subject,SensorLocation,AggregationMethod)
